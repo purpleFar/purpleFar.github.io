@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+		<style type="text/css">
+		</style>
+	
+		<script type="text/javascript">
+			function reqListener () {
+				response = JSON.parse(this.responseText);
+				console.log(response);
+				(response[0]['all_imgs_url'].split(', ')).forEach(item => {
+				$("#loading").toggle();
+				$("#comics_img").append("<img src="+item+"><br>");
+				});
+				document.getElementById("load_finish").style.display = 'block';
+				document.getElementById("loading").style.display = 'none'
+			}
+
+			var oReq = new XMLHttpRequest();
+			//var params = encodeURIComponent("?name=survey&=time=4/25");
+			oReq.addEventListener("load", reqListener);
+			oReq.open("GET", "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJAg/exec"+"?name=survey&time=425");
+			oReq.send();
+		</script>
+	</head>
+	<body>
+		<div id="loading">
+			<p>載入中，清稍後...</p>
+		</div>
+		<div id="load_finish", style="display:none;">
+			<div id="comics_img"></div>
+		</div>
+		<!-- jQuery first, then Bootstrap JS. -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+<!--
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$.ajax({
+					method: "Get",
+					url: "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJAg/exec",
+					data: {name: '冠', time: '4/24'},
+					success: function (response) {
+						console.log(response);
+						(response[0]['all_imgs_url'].split(', ')).forEach(item => {
+							$("#loading").toggle();
+							$("#comics_img").append("<img src="+item+"><br>");
+						});
+						document.getElementById("load_finish").style.display = 'block';
+						document.getElementById("loading").style.display = 'none'
+					}
+				});
+			});
+		</script>
+-->
+	</body>
+</html>

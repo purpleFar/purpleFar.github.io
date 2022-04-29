@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html>
+	<title>電腦生成小說之評分問卷生成器</title>
 	<head>
-		<!-- Required meta tags always come first -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 	</head>
+	<style type="text/css">
+	div{margin:70px;border:0;padding:0;}
+	</style>
 	<body>
-		<p>載入中，請稍後...</p>
+		<div>
+			<h1>問卷生成器</h1>
+			<p id="p1" style="color:#FF0000;">製作中，請耐心等候...(約20秒)</p>
+		</div>
+		<div style="color:#5B5B5B;">
+			<p>有問題可直接聯繫本人</p>
+			<p>我的e-mail: ggg999bbb666.cs08@nycu.edu.tw</p>
+		</div>
 		
 		<script type="text/javascript">
-			
-			function reqListener () {
-				window.location.href= this.responseText;
-			}
-
 			var oReq = new XMLHttpRequest();
-			oReq.addEventListener("load", reqListener);
-			oReq.open("GET", "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJAg/exec");			
+			oReq.onreadystatechange=function() {
+				if (oReq.readyState === XMLHttpRequest.DONE){   //if complete
+					if(oReq.status === 200){  //check if "OK" (200)
+						window.location.href= this.responseText;
+					} else {
+						document.getElementById("p1").innerHTML = "發生錯誤，請重新整理";
+					}
+				} 
+			}
+			oReq.open("GET", "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJAq/exec");			
 			oReq.send();
 		</script>
 	</body>

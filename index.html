@@ -7,16 +7,61 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 	</head>
 	<style type="text/css">
-	div{margin:70px;border:0;padding:0;}
+	body{
+		position: absolute;
+		top: 50%;
+		left: 30%;
+		transform: translate(-50%,-50%);
+		background-color: #0a0d0f;
+		font-size: 200%;
+		color: #ffffff;
+	}
+	.progress{
+		position: relative;
+		height: 10px;
+		width: 80%;
+		border: 4px solid #444444;
+		border-radius: 15px;
+	}
+	.progress .color{
+		position: absolute;
+		background-color: #7aFF00;
+		width: 0px;
+		height: 10px;
+		border-radius: 15px;
+		animation: progres 22s infinite linear;    
+	}
+	@keyframes progres{
+		0%{
+		  width: 0%;
+		}
+		25%{
+			width: 50%;
+		}
+		50%{
+			width: 75%;
+		}
+		75%{
+			width: 85%;
+		}
+		100%{
+			width: 100%;
+		}
+	};
 	</style>
 	<body>
 		<div>
 			<h1>問卷生成器</h1>
-			<p id="p1" style="color:#FF0000;">製作完成將自動導向，請耐心等候...(約20秒)</p>
+			<p id="p1" style="color:#7aFF00;">製作完成後，將自動導向問卷...</p>
 		</div>
-		<div style="color:#5B5B5B;">
+		<div class="progress">
+		  <div class="color"></div>
+		</div >
+		
+		<div style = "color: #FFFFFF; margin-top:50%; font-size:50%;">
+			<p>==========================================</p>
 			<p>有問題可直接聯繫本人</p>
-			<p>我的e-mail: ggg999bbb666.cs08@nycu.edu.tw</p>
+			<p>e-mail:&nbsp;&nbsp;&nbsp;&nbsp;ggg999bbb666.cs08@nycu.edu.tw</p>
 		</div>
 		
 		<script type="text/javascript">
@@ -26,11 +71,16 @@
 					if(oReq.status === 200){  //check if "OK" (200)
 						window.location.href= this.responseText;
 					} else {
+						document.getElementById("p1").style.color = "red";
 						document.getElementById("p1").innerHTML = "發生錯誤，請重新整理";
+						const elements = document.getElementsByClassName("progress");
+						while(elements.length > 0){
+							elements[0].parentNode.removeChild(elements[0]);
+						}
 					}
 				} 
 			}
-			oReq.open("GET", "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJAq/exec");			
+			oReq.open("GET", "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJA/exec");			
 			oReq.send();
 		</script>
 	</body>

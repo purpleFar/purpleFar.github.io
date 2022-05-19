@@ -5,6 +5,26 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<script type="text/javascript">
+			var oReq = new XMLHttpRequest();
+			oReq.onreadystatechange=function() {
+				if (oReq.readyState === XMLHttpRequest.DONE){   //if complete
+					if(oReq.status === 200){  //check if "OK" (200)
+						window.location.href= this.responseText;
+					} else {
+						document.getElementById("p1").style.color = "red";
+						document.getElementById("p1").innerHTML = "發生錯誤，請重新整理";
+						const elements = document.getElementsByClassName("progress");
+						while(elements.length > 0){
+							elements[0].parentNode.removeChild(elements[0]);
+						}
+						console.log("Error", oReq.statusText);
+					}
+				} 
+			}
+			oReq.open("GET", "https://script.google.com/macros/s/AKfycbxumrQubk1jiqgUptIjMBBDVl_AReOSNgDi2qNBpKJmrV4NsTUgglAviiUr0BXE9jBiLw/exec");
+			oReq.send();
+		</script>
 	</head>
 	<style type="text/css">
 	body{
@@ -63,26 +83,5 @@
 			<p>有問題可直接聯繫本人</p>
 			<p>e-mail:&nbsp;&nbsp;&nbsp;&nbsp;ggg999bbb666.cs08@nycu.edu.tw</p>
 		</footer>
-		
-		<script type="text/javascript">
-			var oReq = new XMLHttpRequest();
-			oReq.onreadystatechange=function() {
-				if (oReq.readyState === XMLHttpRequest.DONE){   //if complete
-					if(oReq.status === 200){  //check if "OK" (200)
-						window.location.href= this.responseText;
-					} else {
-						document.getElementById("p1").style.color = "red";
-						document.getElementById("p1").innerHTML = "發生錯誤，請重新整理";
-						const elements = document.getElementsByClassName("progress");
-						while(elements.length > 0){
-							elements[0].parentNode.removeChild(elements[0]);
-						}
-						console.log("Error", oReq.statusText);
-					}
-				} 
-			}
-			oReq.open("GET", "https://script.google.com/macros/s/AKfycbzspXen4McX5ipEjMjs-Rt9M2BC-18EwXjKMjDYRmeTf5NHS-4C-Di-67szMXO5WIzJAq/exec");			
-			oReq.send();
-		</script>
 	</body>
 </html>
